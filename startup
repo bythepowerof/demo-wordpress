@@ -1,0 +1,28 @@
+#!/bin/sh
+
+###
+### Usage:
+###    bootstrap <target> [<target>] [<var>=<value>]
+###        load kmake CRDs into cluster
+###
+###    make <target> [<target>] [<var>=<value>]
+###        run make commands against target
+###        
+###    -h
+###        print this help
+word=$1
+shift
+
+case $word in
+   bootstrap)
+      cd /bootstrap || exit 9
+      make "$@"
+      ;;
+   make)
+      cd /payload || exit 9
+      make "$@"
+      ;;
+   *)
+      grep -E "^###" "$0" | sed s/^###//
+     ;;
+esac
