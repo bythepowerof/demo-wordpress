@@ -20,7 +20,7 @@ spec:
         spec:
           containers:
           - name: make
-            image: wordpress:1
+            image: bythepowerof/demo-wordpress:latest
             command: ['make']
             args: ['-f', '/usr/share/kmake/kmake.mk']
       targets: [ '.KMAKEVOL']
