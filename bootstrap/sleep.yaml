@@ -1,7 +1,7 @@
 apiVersion: bythepowerof.github.com/v1
 kind: KmakeRun
 metadata:
-  name: wordpress-makevol
+  name: wordpress-sleep
   labels:
     app.kubernetes.io/name: kmake-wordpress
     app.kubernetes.io/instance: kmakerun-make
@@ -20,6 +20,6 @@ spec:
         spec:
           containers:
           - name: make
-            image: bythepowerof/demo-wordpress:latest
-            args: ['make', '-f', '/usr/share/kmake/kmake.mk']
-      targets: [ '.KMAKEVOL']
+            image: bythepowerof/make-kubectl:1.17
+            args: ['-f', '/usr/share/kmake/kmake.mk']
+      targets: [ '.KMAKEINIT', '.KMAKESLEEP']

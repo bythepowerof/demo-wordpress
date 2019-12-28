@@ -9,5 +9,6 @@ namespace: default
 
 resources:
   - kmake.yaml
-  - makedeploy.yaml
   - makevol.yaml
+  - makedeploy.yaml
+

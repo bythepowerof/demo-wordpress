@@ -18,49 +18,49 @@ spec:
       requests:
         storage: 3Ki
   rules:
-  - targets:
-    - .PHONY
-    doublecolon: false
-    commands: []
-    prereqs:
-    - deploy
-    - .KMAKEVOL
-    - .KMAKEINIT
-    - .KMAKESLEEP
-  - targets:
-    - deploy
-    doublecolon: false
-    commands:
-    - 'kubectl apply -k $(KMAKE_VOLUME) '
-  - targets:
-    - .KMAKEVOL
-    doublecolon: false
-    commands:
-    - cp -r $(KMAKE_WORKDIR)/* $(KMAKE_VOLUME)
-    prereqs:
-    - /tmp/kmake-vol
-  - targets:
-    - .KMAKEINIT
-    doublecolon: false
-    commands:
-    - cp -r $(KMAKE_VOLUME)/* $(KMAKE_WORKDIR)
-    prereqs:
-    - /Users/jeremymarshall/src/github/JeremyMarshall/wordpress
-  - targets:
-    - /tmp/kmake-vol
-    - /Users/jeremymarshall/src/github/JeremyMarshall/wordpress
-    doublecolon: false
-    commands:
-    - mkdir -p $@
-  - targets:
-    - .KMAKESLEEP
-    doublecolon: false
-    commands:
-    - '@echo sleeping'
-    - tail -f /dev/null  
+    - targets:
+      - .PHONY
+      doublecolon: false
+      commands: []
+      prereqs:
+      - deploy
+      - .KMAKEVOL
+      - .KMAKEINIT
+      - .KMAKESLEEP
+    - targets:
+      - deploy
+      doublecolon: false
+      commands:
+      - 'kubectl apply -k $(KMAKE_WORKDIR) '
+    - targets:
+      - .KMAKEVOL
+      doublecolon: false
+      commands:
+      - cp -rv $(KMAKE_WORKDIR) $(KMAKE_VOLUME)
+      prereqs:
+      - $(KMAKE_VOLUME)
+    - targets:
+      - .KMAKEINIT
+      doublecolon: false
+      commands:
+      - cp -rv $(KMAKE_VOLUME)/* $(KMAKE_WORKDIR)
+      prereqs:
+      - $(KMAKE_WORKDIR)
+    - targets:
+      - $(KMAKE_VOLUME)
+      - $(KMAKE_WORKDIR)
+      doublecolon: false
+      commands:
+      - mkdir -p $@
+    - targets:
+      - .KMAKESLEEP
+      doublecolon: false
+      commands:
+      - '@echo sleeping'
+      - tail -f /dev/null
   variables:
     KMAKE_VOLUME: /usr/share/pvc
-    KMAKE_WORKDIR: /make
+    KMAKE_WORKDIR: ./
 
 
 
