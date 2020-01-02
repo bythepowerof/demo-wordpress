@@ -11,4 +11,6 @@ resources:
   - kmake.yaml
   - makevol.yaml
   - makedeploy.yaml
+  - sleep.yaml
+  - makevol-sleep.yaml
 

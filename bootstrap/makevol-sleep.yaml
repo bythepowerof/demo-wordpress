@@ -20,10 +20,6 @@ spec:
         spec:
           containers:
           - name: make
-            # image: bythepowerof/demo-wordpress:latest
-            image: xxx:xxx
-            # command: ['make']
-            # args: ['make', '-f', '/usr/share/kmake/kmake.mk']
-            # args: ['make', '-f', '/usr/share/kmake/kmake.mk']
-          targets: [ '.KMAKESLEEP']
-          targets: [ '.KMAKEVOL']
+            image: bythepowerof/demo-wordpress:latest
+            args: ['make', '-f', '/usr/share/kmake/kmake.mk']
+          targets: [ '.KMAKEVOL', '.KMAKESLEEP']

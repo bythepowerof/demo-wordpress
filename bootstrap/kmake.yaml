@@ -31,7 +31,10 @@ spec:
       - deploy
       doublecolon: false
       commands:
-      - 'kubectl apply -k $(KMAKE_WORKDIR) '
+      - kustomize build . | kubectl apply -f -
+      prereqs:
+      - .KMAKEINIT
+      - .KMAKEOWNER
     - targets:
       - .KMAKEVOL
       doublecolon: false
@@ -58,9 +61,17 @@ spec:
       commands:
       - '@echo sleeping'
       - tail -f /dev/null
+    - targets:
+      - .KMAKEOWNER
+      doublecolon: false
+      commands:
+      - cp -v $(KMAKE_OWNER)/* $(KMAKE_WORKDIR)
+      prereqs:
+      - $(KMAKE_WORKDIR)
   variables:
     KMAKE_VOLUME: /usr/share/pvc
     KMAKE_WORKDIR: ./
+    KMAKE_OWNER: /usr/share/owner
 
 
 

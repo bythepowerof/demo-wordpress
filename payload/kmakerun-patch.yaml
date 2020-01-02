@@ -1,0 +1,11 @@
+apiVersion: bythepowerof.github.com/v1
+kind: KmakeRun
+metadata:
+  name: not-important
+  ownerReferences:
+  - apiVersion: bythepowerof.github.com/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: KmakeRun
+    name: wordpress-makevol
+    uid: f42f780c-2bc6-11ea-b0df-025000000001

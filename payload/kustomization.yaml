@@ -16,3 +16,8 @@ resources:
   - namespace.yaml
   - mysql-deployment.yaml
   - wordpress-deployment.yaml
+
+patches:
+  - path: kmakerun-owner-patch.yaml
+    target:
+      namespace: wordpress

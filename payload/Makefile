@@ -1,6 +1,7 @@
 
+
 .PHONY: deploy
-deploy:
-	kubectl apply -k $(KMAKE_VOLUME)/payload 
+deploy: .KMAKEINIT .KMAKEOWNER
+	kustomize build . | kubectl apply -f -
 
 include kmake.mk

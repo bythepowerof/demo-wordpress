@@ -20,6 +20,6 @@ spec:
         spec:
           containers:
           - name: make
-            image: bythepowerof/make-kubectl:1.17
+            image: bythepowerof/make-kubectl:1.17ii
             args: ['-f', '/usr/share/kmake/kmake.mk']
       targets: [ '.KMAKEINIT', 'deploy']

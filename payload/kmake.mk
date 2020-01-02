@@ -1,14 +1,19 @@
 
 KMAKE_VOLUME ?= /tmp/kmake-vol
+KMAKE_OWNER ?= /tmp/kmake-owner
 KMAKE_WORKDIR ?= $(CURDIR)
 
 .PHONY: .KMAKEVOL
 .KMAKEVOL: $(KMAKE_VOLUME)
-	cp -r $(KMAKE_WORKDIR)/payload $(KMAKE_VOLUME)
+	cp -rv $(KMAKE_WORKDIR) $(KMAKE_VOLUME)
 
 .PHONY: .KMAKEINIT
 .KMAKEINIT: $(KMAKE_WORKDIR)
-	cp -r $(KMAKE_VOLUME)/payload $(KMAKE_WORKDIR)
+	cp -rv $(KMAKE_VOLUME)/* $(KMAKE_WORKDIR)
+
+.PHONY: .KMAKEOWNER
+.KMAKEOWNER: $(KMAKE_WORKDIR)
+	cp -v $(KMAKE_OWNER)/* $(KMAKE_WORKDIR)
 
 $(KMAKE_VOLUME) $(KMAKE_WORKDIR):
 	mkdir -p $@
@@ -17,3 +22,4 @@ $(KMAKE_VOLUME) $(KMAKE_WORKDIR):
 .KMAKESLEEP:
 	@echo sleeping
 	tail -f /dev/null
+
