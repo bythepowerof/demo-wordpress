@@ -22,4 +22,4 @@ spec:
           - name: make
             image: bythepowerof/demo-wordpress:latest
             args: ['make', '-f', '/usr/share/kmake/kmake.mk']
-          targets: [ '.KMAKEVOL', '.KMAKESLEEP']
+      targets: [ '.KMAKEVOL', '.KMAKESLEEP']
